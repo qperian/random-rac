@@ -34,7 +34,7 @@ for f in froshL:
 #ROOMS: list of all the open rooms
 ROOMS = [
     #FILL WITH ROOMS -- ROOMS ARE STRING
-    "101", "102a", "102b", "103"
+    "125","145","212a","212b","222a","222b","145A","232a","232b","242a","242b","312a","312b","322a","322b","342a","342b","332a","332b","422a","422b","412a","412b","432a","432b"
 ]
 
 #curry : func (a, b -> c), a -> func(b -> c)

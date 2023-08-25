@@ -18,7 +18,7 @@ for line in froshList:
     name, kerb, phone, gender, roomateGender, noMaleFloor, noFemFloor, catAllergy, toptional, desiredRoomate = line[1:11]
     roomateGender = roomateGender.split(", ")
     wantedRooms = "\""+"\",\"".join(line[12:26])+"\""
-    wantedRooms = re.sub(r'"([1-9][1-9]2)"', r'"\g<1>a","\g<1>b"', wantedRooms)
+    wantedRooms = re.sub(r'"([2-9][1-9]2)"', r'"\g<1>a","\g<1>b"', wantedRooms) #used [2-9] bc 112 is wierd
     bannedRooms = (toptionalRooms if not(toptional) else []) + (loop if (noFemFloor or (gender=="Male")) else []) + (catRooms if catAllergy else [])
     bannedRooms = ("\""+", ".join(bannedRooms)+"\"") if (len(bannedRooms)>0) else ""
     gender = "m" if gender=="Male" else "f" if gender=="Female" else "x" 
@@ -27,5 +27,4 @@ for line in froshList:
     with open(outdir, "a") as out:
         frosh = ("frosh(\""+kerb+"\",["+wantedRooms+"], ["+bannedRooms+"],\""+gender+"\",\""+roomateGender+"\""+((",\""+desiredRoomate+"\"") if not(desiredRoomate=="") else "")+")")
         print(frosh)
-        out.write(frosh+"\n")
-
+        out.write(frosh+",\n")
