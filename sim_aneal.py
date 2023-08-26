@@ -23,10 +23,7 @@ froshL = [
     #A FROSH LOOKS LIKE:
     # frosh("kerb", ["list", "of", "rooms"], ["list", "of", "rooms"], 'g', "mfx", "optional_kerb"), where 'g' is one of 'm','f','x'
     # Backfill with the "jarthur" frosh s.t. the # of frosh = the # of rooms
-    frosh("a", ["103", "102a", "102b", "101"], [], 'm', 'mfx'),
-    frosh("b", ["101", "102a", "102b", "103"], [], 'f', 'mfx'),
-    frosh("c", ["103", "101"], ["102a", "102b"], 'm', 'm'),
-    frosh("d", ["102a", "102b", "103", "101"], [], 'f', 'mfx')
+    
 ]
 
 froshDict = {}
@@ -38,7 +35,7 @@ for f in froshL:
 #ROOMS: list of all the open rooms
 ROOMS = [
     #FILL WITH ROOMS -- ROOMS ARE STRING
-    "125","145","212a","212b","222a","222b","145A","232a","232b","242a","242b","312a","312b","322a","322b","342a","342b","332a","332b","422a","422b","412a","412b","432a","432b","442b"
+    "125","145","212a","212b","222a","222b","145A","232a","232b","242a","242b","312a","312b","322a","322b","342a","342b","332a","332b","422a","422b","412a","412b","432a","432b"
 ]
 
 #curry : func (a, b -> c), a -> func(b -> c)
