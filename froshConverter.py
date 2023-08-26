@@ -15,7 +15,7 @@ catRooms = loop+blackhole
 froshList = [line.split('\t') for line in f.readlines()]
 for line in froshList:
     line = [True if i == "Yes" else False if i == "No" else i for i in line]
-    name, kerb, phone, gender, roomateGender, noMaleFloor, noFemFloor, catAllergy, toptional, desiredRoomate = line[1:11]
+    name, kerb, phone, gender, roomateGender, noFemFloor, catAllergy, toptional, desiredRoomate = line[1:11]
     roomateGender = roomateGender.split(", ")
     wantedRooms = "\""+"\",\"".join(line[12:26])+"\""
     wantedRooms = re.sub(r'"([2-9][1-9]2)"', r'"\g<1>a","\g<1>b"', wantedRooms) #used [2-9] bc 112 is wierd
