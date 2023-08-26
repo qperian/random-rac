@@ -15,16 +15,15 @@ catRooms = loop+blackhole
 froshList = [line.split('\t') for line in f.readlines()]
 for line in froshList:
     line = [True if i == "Yes" else False if i == "No" else i for i in line]
-    name, kerb, phone, gender, roomateGender, noFemFloor, catAllergy, toptional, desiredRoomate = line[1:11]
+    name, kerb, phone, gender, roomateGender, noFemFloor, catAllergy, toptional, desiredRoomate = line[1:10]
     kerb, desiredRoomate = kerb.lower(), desiredRoomate.lower()
     roomateGender = roomateGender.split(", ")
-    wantedRooms = "\""+"\",\"".join(line[12:26])+"\""
+    wantedRooms = "\""+"\",\"".join(line[11:25])+"\""
     wantedRooms = re.sub(r'"([2-9][1-9]2)"', r'"\g<1>a","\g<1>b"', wantedRooms) #used [2-9] bc 112 is wierd
     bannedRooms = (toptionalRooms if not(toptional) else []) + (loop if (noFemFloor or (gender=="Male")) else []) + (catRooms if catAllergy else [])
     bannedRooms = ("\""+", ".join(bannedRooms)+"\"") if (len(bannedRooms)>0) else ""
     gender = "m" if gender=="Male" else "f" if gender=="Female" else "x" 
-    roomateGender = ("m" if "Male" in roomateGender else "")+("f" if "Female" in roomateGender else "")+("x" if "Nonbinary" in roomateGender else "")
-    print(noFemFloor)
+    roomateGender = ("m" if "Male" in roomateGender else "")+("f" if "Female" in roomateGender else "")+("x" if "Non-binary" in roomateGender else "")
     with open(outdir, "a") as out:
         frosh = ("frosh(\""+kerb+"\",["+wantedRooms+"], ["+bannedRooms+"],\""+gender+"\",\""+roomateGender+"\""+((",\""+desiredRoomate+"\"") if not(desiredRoomate=="") else "")+")")
         print(frosh)
