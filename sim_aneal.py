@@ -23,7 +23,10 @@ froshL = [
     #A FROSH LOOKS LIKE:
     # frosh("kerb", ["list", "of", "rooms"], ["list", "of", "rooms"], 'g', "mfx", "optional_kerb"), where 'g' is one of 'm','f','x'
     # Backfill with the "jarthur" frosh s.t. the # of frosh = the # of rooms
-    
+    frosh("a", ["103", "102a", "102b", "101"], [], 'm', 'mfx'),
+    frosh("b", ["101", "102a", "102b", "103"], [], 'f', 'mfx'),
+    frosh("c", ["103", "101"], ["102a", "102b"], 'm', 'm'),
+    frosh("d", ["102a", "102b", "103", "101"], [], 'f', 'mfx')
 ]
 
 froshDict = {}
