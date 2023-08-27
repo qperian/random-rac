@@ -4,7 +4,7 @@ from constants import floors, frosh
 def formatFrosh(indir, toptionalFloors, femFloors, catFloors,rooms):
     froshObjects = []
     f = open(indir) 
-    froshList = [line.split('\t') for line in f.readlines()]
+    froshList = [line.split('\t') for line in f.readlines()[1:]]
     for line in froshList:
         line = [True if i == "Yes" else False if i == "No" else i for i in line]
         name, kerb, phone, gender, roomateGender, noFemFloor, catAllergy, toptional, desiredRoomate = line[1:10] ###### Change this line if form changes #######
@@ -22,7 +22,7 @@ def formatFrosh(indir, toptionalFloors, femFloors, catFloors,rooms):
     froshDict = {}
     for f in froshObjects:
         froshDict[f.kerb] = f
-    
+        
     return(froshObjects, froshDict)
 
 def formatOut(dict, priority, w, rooms):
