@@ -1,5 +1,5 @@
 # random-rac
-1. Save google sheets output to tsv
+1. Save google sheets output to tsv (note, the code assumes the exported file includes a header row)
 2. Change columns in froshConvertor based on add/removing avialable rooms, and other form changes
 3. update "ROOMS" and "indir" variables, as well as toptionalFloors, catFloors, and femFloors if needed in constants.py 
 4. run sim_aneal.py
