@@ -10,7 +10,7 @@ def formatFrosh(indir, toptionalFloors, femFloors, catFloors,rooms):
         name, kerb, phone, gender, roomateGender, noFemFloor, catAllergy, toptional, desiredRoomate = line[1:10] ###### Change this line if form changes #######
         kerb, desiredRoomate = kerb.lower(), desiredRoomate.lower()
         roomateGender = roomateGender.split(", ")
-        wantedRooms = ",".join(line[10:25])
+        wantedRooms = ",".join(line[10:(10+len(rooms))])
         wantedRooms = re.sub(r'([2-9][1-9]2)', r'\g<1>a,\g<1>b', wantedRooms).split(",") #used [2-9] bc 112 is wierd
         bannedRooms = (toptionalFloors if not(toptional) else []) + (femFloors if (noFemFloor or (gender=="Male")) else []) + (catFloors if catAllergy else [])
         gender = "m" if gender=="Male" else "f" if gender=="Female" else "x" 
