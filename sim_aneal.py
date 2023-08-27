@@ -1,45 +1,11 @@
 from random import choice
 import random
+from reformat import *
+from constants import floors, frosh, ROOMS, indir, toptionalFloors, catFloors, femFloors
 
 
-#frosh
-class frosh:
-    def __init__(self, kerb, roomWants, bannedRooms, gender, genderRoommate, desiredRoommate=""):
-        self.prefrences = roomWants #list string
-        self.bannedRooms = bannedRooms #list string
-        self.kerb = kerb #string
-        self.room = "0" #string
-        self.desiredRoommate = desiredRoommate #string
-        self.gender = gender #char
-        self.genderRoommate = genderRoommate #string
-    def prefrences_index(self):
-        if self.kerb == "jarthur":
-            return 0
-        return self.prefrences.index(self.room)
 
-
-froshL = [
-    #FILL WITH FROSH
-    #A FROSH LOOKS LIKE:
-    # frosh("kerb", ["list", "of", "rooms"], ["list", "of", "rooms"], 'g', "mfx", "optional_kerb"), where 'g' is one of 'm','f','x'
-    # Backfill with the "jarthur" frosh s.t. the # of frosh = the # of rooms
-    frosh("a", ["103", "102a", "102b", "101"], [], 'm', 'mfx'),
-    frosh("b", ["101", "102a", "102b", "103"], [], 'f', 'mfx'),
-    frosh("c", ["103", "101"], ["102a", "102b"], 'm', 'm'),
-    frosh("d", ["102a", "102b", "103", "101"], [], 'f', 'mfx')
-]
-
-froshDict = {}
-for f in froshL:
-    froshDict[f.kerb] = f
-
-
-    
-#ROOMS: list of all the open rooms
-ROOMS = [
-    #FILL WITH ROOMS -- ROOMS ARE STRING
-    "125","145","212a","212b","222a","222b","145A","232a","232b","242a","242b","312a","312b","322a","322b","342a","342b","332a","332b","422a","422b","412a","412b","432a","432b"
-]
+froshL, froshDict = formatFrosh(indir, toptionalFloors,femFloors,catFloors, ROOMS)
 
 #curry : func (a, b -> c), a -> func(b -> c)
 def curry(f, x):
@@ -159,8 +125,25 @@ def listMinus(l1, l2):
         if i not in l2:
             toRet.append(i)
     return toRet
-                     
+
+def runAssign():
+    res, w = assignRooms(froshL, leastSquares, 40000), getWeight(froshL, leastSquares)
+    roomDict = {}
     
-print(assignRooms(froshL, leastSquares, 40000), getWeight(froshL, leastSquares))
-print(assignRooms(froshL, leastSquares, 40000), getWeight(froshL, leastSquares))
-print(assignRooms(froshL, leastSquares, 40000), getWeight(froshL, leastSquares))
+    for f in res:
+        roomDict[f[1]]=(f[0],f[2])
+    priority = sorted(res, key = lambda row: (row[2], random.uniform(1,10)))
+    return(roomDict, priority, w)
+
+
+res, w = formatOut(*runAssign(), ROOMS)
+with open("out1_"+str(w)+".tsv", "a") as out:
+    out.write(res)
+
+res, w = formatOut(*runAssign(), ROOMS)
+with open("out2_"+str(w)+".tsv", "a") as out:
+    out.write(res)
+
+res, w = formatOut(*runAssign(), ROOMS)
+with open("out3_"+str(w)+".tsv", "a") as out:
+    out.write(res)
