@@ -12,7 +12,7 @@ floors = {
 #ROOMS: list of all the open rooms
 ROOMS = [ 
     #FILL WITH ROOMS -- ROOMS ARE STRING
-    "125","145","212a","212b","222a","222b","145A","232a","232b","242a","242b","312a","312b","322a","322b","342a","342b","332a","332b","422a","422b","412a","412b","432a","432b"
+    "115","125","145","145A","212a","212b","222a","222b","232a","232b","242b","312a","312b","322a","322b","325","342b","332a","332b","422a","422b","412a","412b","432a","432b"
 ]
 
 #path to input tsv
@@ -21,6 +21,11 @@ indir = "" ####CHANGE#####
 toptionalFloors = floors["clam"]+floors["pecker"]+floors["blackhole"]
 catFloors = floors["loop"]+floors["blackhole"]
 femFloors = floors["loop"]
+
+pullIns = [] #### Add rooms taken via pull in process here #####
+
+ROOMS = [rm for rm in ROOMS if rm not in pullIns]
+
 
 #frosh
 class frosh:
@@ -36,3 +41,6 @@ class frosh:
         if self.kerb == "jarthur":
             return 0
         return self.prefrences.index(self.room)
+    
+
+  
