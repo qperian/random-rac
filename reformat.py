@@ -19,7 +19,7 @@ def formatFrosh(indir, toptionalFloors, femFloors, catFloors,rooms):
         froshObjects.append(frosh(kerb,wantedRooms,bannedRooms,gender,roomateGender,desiredRoomate))
     for extra in range(1,len(rooms)+1-len(froshObjects)):
         froshObjects.append(frosh("jarthur", [], [], "x", "mfx"))
-    
+    #print([frosh.__dict__ for frosh in froshObjects])
     froshDict = {}
     for f in froshObjects:
         froshDict[f.kerb] = f
@@ -32,7 +32,7 @@ def formatOut(dict, priority, w, rooms):
     for floorName, floorRooms in currentRoomDict.items():
         out+=floorName+"\n"
         for room in floorRooms:
-            out+=room+"\t"+dict[room][0]+"\t"+str(+dict[room][1])+"\n"
-    out+= "priority:\n"+"\n".join(["\t".join(map(str,frosh)) for frosh in priority])
+            out+=room+"\t"+dict[room][0]+"\t"+str(+dict[room][1]+1)+"\n" #making priority index 1-indexed instead of 0-indexed
+    out+= "priority:\n"+"\n".join([frosh[0]+"\t"+frosh[1]+"\t"+str(frosh[2]+1) for frosh in priority]) #again adding 1 to frosh[2] to make priority 1-indexed
     return(out, w)
     

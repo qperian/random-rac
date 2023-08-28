@@ -133,6 +133,7 @@ def runAssign():
     for f in res:
         roomDict[f[1]]=(f[0],f[2])
     priority = sorted(res, key = lambda row: (row[2], random.uniform(1,10)))
+    
     return(roomDict, priority, w)
 
 
