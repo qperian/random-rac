@@ -16,13 +16,13 @@ ROOMS = [
 ]
 
 #path to input tsv
-indir = "" ####CHANGE#####
+indir = "/Users/quinnperian/Downloads/TestIn.tsv" ####CHANGE#####
 
 toptionalFloors = floors["clam"]+floors["pecker"]+floors["blackhole"]
 catFloors = floors["loop"]+floors["blackhole"]
 femFloors = floors["loop"]
 
-pullIns = [] #### Add rooms taken via pull in process here #####
+pullIns = ["442b"] #### Add rooms taken via pull in process here #####
 
 ROOMS = [rm for rm in ROOMS if rm not in pullIns]
 
