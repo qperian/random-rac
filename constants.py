@@ -12,17 +12,17 @@ floors = {
 #ROOMS: list of all the open rooms
 ROOMS = [ 
     #FILL WITH ROOMS -- ROOMS ARE STRING
-    "115","125","145","145A","212a","212b","222a","222b","232a","232b","242b","312a","312b","322a","322b","325","342b","332a","332b","422a","422b","412a","412b","432a","432b", "442b"
+    "115","125","145","145A","212a","212b","222a","222b","232a","232b","242b","312a","312b","322a","322b","325","342b","332a","332b","422a","422b","412a","412b","432a","432b", "431"
 ]
 
 #path to input tsv
-indir = "/Users/quinnperian/Downloads/TestIn.tsv" ####CHANGE#####
+indir = "" ####CHANGE#####
 
 toptionalFloors = floors["clam"]+floors["pecker"]+floors["blackhole"]
 catFloors = floors["loop"]+floors["blackhole"]
 femFloors = floors["loop"]
 
-pullIns = ["442b"] #### Add rooms taken via pull in process here #####
+pullIns = [] #### Add rooms taken via pull in process here #####
 
 ROOMS = [rm for rm in ROOMS if rm not in pullIns]
 
