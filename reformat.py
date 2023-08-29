@@ -14,6 +14,7 @@ def formatFrosh(indir, toptionalFloors, femFloors, catFloors,rooms):
         wantedRooms = re.sub(r'([2-9][1-9]2)', r'\g<1>a,\g<1>b', wantedRooms).split(",") #used [2-9] bc 112 is wierd
         wantedRooms = [rm for rm in wantedRooms if rm not in pullIns]
         bannedRooms = (toptionalFloors if not(toptional) else []) + (femFloors if (noFemFloor or (gender=="Male")) else []) + (catFloors if catAllergy else [])
+        wantedRooms -= bannedRooms
         gender = "m" if gender=="Male" else "f" if gender=="Female" else "x" 
         roomateGender = ("m" if "Male" in roomateGender else "")+("f" if "Female" in roomateGender else "")+("x" if "Non-binary" in roomateGender else "")
         froshObjects.append(frosh(kerb,wantedRooms,bannedRooms,gender,roomateGender,desiredRoomate))
