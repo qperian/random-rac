@@ -5,7 +5,7 @@ from constants import floors, frosh, ROOMS, indir, toptionalFloors, catFloors, f
 
 
 
-froshL, froshDict = formatFrosh(indir, toptionalFloors,femFloors,catFloors, ROOMS)
+froshL, froshDict, prefDict = formatFrosh(indir, toptionalFloors,femFloors,catFloors, ROOMS)
 
 #curry : func (a, b -> c), a -> func(b -> c)
 def curry(f, x):
@@ -129,22 +129,27 @@ def listMinus(l1, l2):
 def runAssign():
     res, w = assignRooms(froshL, leastSquares, 40000), getWeight(froshL, leastSquares)
     roomDict = {}
-    
+    modRes = [(f[0],f[1],prefDict[f[0]].index(re.sub(r'([2-9][1-9]2)[a-b]', r'\g<1>', f[1]))) for f in res if f[0] != "jarthur"]
     for f in res:
-        roomDict[f[1]]=(f[0],f[2])
-    priority = sorted(res, key = lambda row: (row[2], random.uniform(1,10)))
+        deDupRoom = re.sub(r'([2-9][1-9]2)[a-b]', r'\g<1>', f[1])
+        if f[0] != "jarthur":
+            choiceNumber = prefDict[f[0]].index(deDupRoom)
+        else:
+            choiceNumber = 0
+        roomDict[f[1]]=(f[0],choiceNumber) 
+    priority = sorted(modRes, key = lambda row: (prefDict[row[0]].index(re.sub(r'([2-9][1-9]2)[a-b]', r'\g<1>', row[1])), random.uniform(1,10)))
     
     return(roomDict, priority, w)
 
 
-res, w = formatOut(*runAssign(), ROOMS)
+res, w = formatOut(*runAssign(), prefDict, ROOMS)
 with open("out1_"+str(w)+".tsv", "a") as out:
     out.write(res)
 
-res, w = formatOut(*runAssign(), ROOMS)
+res, w = formatOut(*runAssign(), prefDict, ROOMS)
 with open("out2_"+str(w)+".tsv", "a") as out:
     out.write(res)
 
-res, w = formatOut(*runAssign(), ROOMS)
+res, w = formatOut(*runAssign(), prefDict, ROOMS)
 with open("out3_"+str(w)+".tsv", "a") as out:
     out.write(res)
